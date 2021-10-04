@@ -90,6 +90,16 @@ const useStorage = (name, id, pratice, navigation) => {
     storage.storeData(storageDB);
   };
 
+  //Exercises
+  const getExercises = () => {
+    const exercisesArray = storageDB.map((topic) => topic.exercises);
+    const exercises = [];
+    exercisesArray.forEach((exercise) => {
+      exercises.push(exercise[0]);
+    });
+    return exercises;
+  };
+
   useEffect(() => {
     getFavorites();
   }, []);
@@ -101,7 +111,8 @@ const useStorage = (name, id, pratice, navigation) => {
     newEntryEdit,
     storageDB,
     getFavorites,
-    toggleFavorite
+    toggleFavorite,
+    getExercises
   };
 };
 export default useStorage;

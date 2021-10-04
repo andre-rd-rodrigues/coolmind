@@ -13,27 +13,43 @@ const FavoritesScreen = () => {
   const { getFavorites } = useStorage();
   const navigation = useNavigation();
   const [favorites, setFavorites] = useState(getFavorites());
+  const [searched, setSearched] = useState("");
 
+  //DISLIKE
   const handleRemove = () => {
     setFavorites(getFavorites());
   };
 
-  useEffect(() => {
-    navigation.addListener("focus", () => setFavorites(getFavorites()));
-  }, []);
+  //SEARCH
+  const findFavoriteExercise = () => {
+    if (searched.length > 0) {
+      const exercises = favorites.filter((exercise) => {
+        const name = exercise.brief.title.toLowerCase();
+        const brief = exercise.brief.body.toLowerCase();
+        return (
+          name.includes(searched.toLowerCase()) ||
+          brief.includes(searched.toLowerCase())
+        );
+      });
+      return setFavorites(exercises);
+    } else {
+      setFavorites(getFavorites());
+    }
+  };
 
+  //RENDER
   const Favorites = () => {
     if (favorites)
-      return favorites.map((ex) => (
+      return favorites.map((exercise) => (
         <Card
-          key={ex.id}
-          exercise={ex}
-          topicName={ex.topicName}
+          key={exercise.id}
+          exercise={exercise}
+          topicName={exercise.topicName}
           removeLike={handleRemove}
           onPress={() =>
             navigation.navigate("ExerciseDetails", {
-              ex,
-              name: ex.topicName
+              exercise,
+              name: exercise.topicName
             })
           }
         />
@@ -42,12 +58,28 @@ const FavoritesScreen = () => {
     return <NotFound text="No favorite exercises" noImage />;
   };
 
+  //LIFECYCLE
+  useEffect(() => {
+    navigation.addListener("focus", () => setFavorites(getFavorites()));
+  }, []);
+
+  useEffect(() => {
+    findFavoriteExercise();
+    return () => {
+      findFavoriteExercise();
+    };
+  }, [searched]);
+
   return (
     <Screen>
       <Image source={require("../assets/favorites.png")} style={styles.image} />
       <Title style={styles.title}>Favorites</Title>
       <View style={styles.searchContainer}>
-        <SearchInput />
+        <SearchInput
+          placeholder="Search your favorite exercise..."
+          searchInput={(search) => setSearched(search)}
+          favorites
+        />
       </View>
       <Container scrollView>
         <Favorites />

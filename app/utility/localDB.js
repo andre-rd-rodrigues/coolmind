@@ -1,3 +1,6 @@
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
+
 export default [
   {
     name: "Happiness",
@@ -7,7 +10,7 @@ export default [
     topicDetailsImage: require("../assets/sun.png"),
     exercises: [
       {
-        id: 1,
+        id: uuidv4(),
         favorite: false,
         cardImage: require("../assets/flower.png"),
         time: "5",
@@ -23,7 +26,7 @@ export default [
           detailsImage: require("../assets/pablo-coffee.png"),
           exercisesDone: [
             {
-              id: 1,
+              id: uuidv4(),
               date: "Date: 19/02/2021",
               content: "Something I've written...",
               name: "Breather"
@@ -46,7 +49,7 @@ export default [
     topicDetailsImage: require("../assets/relax_bg.png"),
     exercises: [
       {
-        id: 1,
+        id: uuidv4(),
         favorite: false,
         cardImage: require("../assets/flower.png"),
         time: "5",
@@ -62,7 +65,7 @@ export default [
           detailsImage: require("../assets/pablo-coffee.png"),
           exercisesDone: [
             {
-              id: 1,
+              id: uuidv4(),
               date: "Date: 19/02/2021",
               content: "Something I've written...",
               name: "Breather"
@@ -85,7 +88,7 @@ export default [
     topicDetailsImage: require("../assets/balance.png"),
     exercises: [
       {
-        id: 1,
+        id: uuidv4(),
         favorite: false,
         cardImage: require("../assets/flower.png"),
         time: "5",
@@ -101,7 +104,7 @@ export default [
           detailsImage: require("../assets/pablo-coffee.png"),
           exercisesDone: [
             {
-              id: 1,
+              id: uuidv4(),
               date: "Date: 19/02/2021",
               content: "Something I've written...",
               name: "Breather"
@@ -124,7 +127,7 @@ export default [
     topicDetailsImage: require("../assets/lamp.png"),
     exercises: [
       {
-        id: 1,
+        id: uuidv4(),
         favorite: false,
         cardImage: require("../assets/flower.png"),
         time: "5",
@@ -140,7 +143,7 @@ export default [
           detailsImage: require("../assets/pablo-coffee.png"),
           exercisesDone: [
             {
-              id: 1,
+              id: uuidv4(),
               date: "Date: 19/02/2021",
               content: "Something I've written...",
               name: "Breather"

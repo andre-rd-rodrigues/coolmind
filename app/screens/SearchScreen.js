@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import Card from "../components/ExerciseCard";
 import Container from "../components/Container";
@@ -9,6 +9,8 @@ import colors from "../config/colors";
 import NotFound from "../components/NotFound";
 
 const TopicsScreen = ({ navigation }) => {
+  const [exercises, setExercises] = useState([]);
+
   return (
     <ImageBackgroundScreen
       uri={require("../assets/section_bg.png")}
@@ -20,10 +22,30 @@ const TopicsScreen = ({ navigation }) => {
         Search
       </Title>
       <View style={styles.searchContainer}>
-        <SearchInput />
+        <SearchInput
+          placeholder="Search for an exercise..."
+          searchResults={(results) => setExercises(results)}
+        />
       </View>
-      <NotFound text="No matching exercises found" />
-      <Container scrollView></Container>
+      <Container scrollView>
+        {exercises.length > 0 ? (
+          exercises.map((exercise) => (
+            <Card
+              key={exercise.id}
+              exercise={exercise}
+              topicName={exercise.topicName}
+              onPress={() =>
+                navigation.navigate("ExerciseDetails", {
+                  exercise,
+                  name: exercise.topicName
+                })
+              }
+            />
+          ))
+        ) : (
+          <NotFound text="No matching exercises found" />
+        )}
+      </Container>
     </ImageBackgroundScreen>
   );
 };
