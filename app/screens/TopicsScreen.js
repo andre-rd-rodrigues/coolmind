@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import StorageContext from "../storage/context";
 import ImageBackgroundScreen from "../components/ImageBackgroundScreen";
 import Title from "../components/Title";
 import Text from "../components/Text";
-import TopicCard from "../components/TopicCard";
-import Container from "../components/Container";
+import Topic from "../components/TopicCard";
 
 const TopicsScreen = ({ navigation }) => {
+  const { storageDB } = useContext(StorageContext);
+
   return (
     <ImageBackgroundScreen
       uri={require("../assets/section_bg.png")}
@@ -16,19 +19,18 @@ const TopicsScreen = ({ navigation }) => {
       <Text style={styles.subtitle}>
         Choose a topic to explore the exercises
       </Text>
-      <Container scrollView>
+      <ScrollView>
         <View style={styles.row}>
-          <TopicCard
-            bg={require("../assets/topics_happiness.png")}
-            onPress={() => navigation.navigate("HappinessScreen")}
-          />
-          <TopicCard bg={require("../assets/topics_relax.png")} />
+          {storageDB &&
+            storageDB.map((topic, index) => (
+              <Topic
+                key={index}
+                bg={topic.topicImage}
+                onPress={() => navigation.navigate("TopicDetails", topic)}
+              />
+            ))}
         </View>
-        <View style={styles.row}>
-          <TopicCard bg={require("../assets/topics_work.png")} />
-          <TopicCard bg={require("../assets/topics_problem.png")} />
-        </View>
-      </Container>
+      </ScrollView>
     </ImageBackgroundScreen>
   );
 };
@@ -42,11 +44,12 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     textAlign: "center",
-    marginBottom: 40
+    marginBottom: 10
   },
   row: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around"
+    flexWrap: "wrap",
+    justifyContent: "space-evenly"
   }
 });

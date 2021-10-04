@@ -6,5 +6,7 @@ export default {
   grey: "#868686",
   white: "white",
   beige: "#FBF7F2",
-  yellow: "#F6D49E"
+  yellow: "#F6D49E",
+  blue: "#38ADB5",
+  red: "#EB9190"
 };

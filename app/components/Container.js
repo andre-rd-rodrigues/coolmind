@@ -1,9 +1,9 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-const Container = ({ children, scrollView = false }) => {
+const Container = ({ children, scrollView = false, ...otherProps }) => {
   const ContainerScroll = () => (
-    <ScrollView>
+    <ScrollView {...otherProps}>
       <View style={styles.container}>{children}</View>
     </ScrollView>
   );
@@ -18,6 +18,6 @@ export default Container;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 15
+    paddingHorizontal: 20
   }
 });

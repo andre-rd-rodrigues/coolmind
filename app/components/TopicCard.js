@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 const TopicCard = ({ onPress, bg }) => {
   return (

@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import TopicsNavigator from "./TopicsNavigator";
-import FavoritesNavigator from "./FavoritesNavigator";
+import FavoritesScreen from "../screens/FavoritesScreen";
 import SearchScreen from "../screens/SearchScreen";
 import colors from "../config/colors";
 
@@ -45,7 +45,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="Favorites"
-        component={FavoritesNavigator}
+        component={FavoritesScreen}
         options={{
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons

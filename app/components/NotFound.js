@@ -3,15 +3,17 @@ import { View, Image, StyleSheet } from "react-native";
 import colors from "../config/colors";
 import Text from "../components/Text";
 
-const NotFound = ({ text }) => {
+const NotFound = ({ text, noImage }) => {
   return (
     <View style={styles.emptyContainer}>
       <Text style={styles.emptyText}>{text}</Text>
-      <Image
-        source={require("../assets/notFound.png")}
-        resizeMode="cover"
-        style={styles.emptyImage}
-      />
+      {!noImage && (
+        <Image
+          source={require("../assets/notFound.png")}
+          resizeMode="cover"
+          style={styles.emptyImage}
+        />
+      )}
     </View>
   );
 };
