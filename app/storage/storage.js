@@ -31,9 +31,9 @@ const getData = async () => {
 const getVersion = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem("version");
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
+    return jsonValue != null ? jsonValue : null;
   } catch (e) {
-    console.log("Error in getting data", error);
+    console.log("Error in getting version", e);
   }
 };
 

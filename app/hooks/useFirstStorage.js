@@ -15,7 +15,7 @@ const useFirstStorage = () => {
       const isNewVersion = () =>
         version !== Constants.manifest.version ? true : false;
 
-      if (data && !isNewVersion) {
+      if (data && !isNewVersion()) {
         setStorageDB(data);
       } else {
         const result = await storage.storeData(localDB);
