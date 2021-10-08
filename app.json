@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
+    "name": "Coolmind",
+    "slug": "coolmind",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/system/icon.png",
@@ -13,7 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -25,6 +27,8 @@
     },
     "web": {
       "favicon": "./app/assets/system/favicon.png"
-    }
+    },
+    "description": "Coolmind is a self-guided mental health app with quick exercises, each one regarding different themes, to help you get calm, connected, and balanced. So whenever you start feeling unpleasant thoughts or emotions, reach out to your app and get yourself a cool mind :)",
+    "githubUrl": "https://github.com/andre-rd-rodrigues/coolmind"
   }
 }
