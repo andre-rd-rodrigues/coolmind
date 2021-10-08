@@ -1,15 +1,11 @@
 import React from "react";
 import { StyleSheet, ImageBackground } from "react-native";
-import colors from "../config/colors";
-import Screen from "./Screen";
 
 const ImageBackgroundScreen = ({ uri, children, style, color = "white" }) => {
   return (
-    <Screen style={[{ backgroundColor: colors[color] }, style]}>
-      <ImageBackground source={uri} resizeMode="cover" style={styles.image}>
-        {children}
-      </ImageBackground>
-    </Screen>
+    <ImageBackground source={uri} resizeMode="stretch" style={styles.image}>
+      {children}
+    </ImageBackground>
   );
 };
 

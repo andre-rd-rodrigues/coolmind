@@ -5,7 +5,7 @@ export default {
   black: "#413E3F",
   grey: "#868686",
   white: "white",
-  beige: "#FBF7F2",
+  beige: "#FFF6EA",
   yellow: "#F6D49E",
   blue: "#38ADB5",
   red: "#EB9190"

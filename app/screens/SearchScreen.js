@@ -1,22 +1,18 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Card from "../components/ExerciseCard";
 import Container from "../components/Container";
-import ImageBackgroundScreen from "../components/ImageBackgroundScreen";
 import Title from "../components/Title";
+import Screen from "../components/Screen";
 import SearchInput from "../components/SearchInput";
-import colors from "../config/colors";
 import NotFound from "../components/NotFound";
+import colors from "../config/colors";
 
 const TopicsScreen = ({ navigation }) => {
   const [exercises, setExercises] = useState([]);
 
   return (
-    <ImageBackgroundScreen
-      uri={require("../assets/section_bg.png")}
-      style={styles.container}
-      color="beige"
-    >
+    <Screen>
       <View style={styles.upperbar}></View>
       <Title textAlign="left" style={styles.title}>
         Search
@@ -46,7 +42,7 @@ const TopicsScreen = ({ navigation }) => {
           <NotFound text="No matching exercises found" />
         )}
       </Container>
-    </ImageBackgroundScreen>
+    </Screen>
   );
 };
 
@@ -55,7 +51,7 @@ export default TopicsScreen;
 const styles = StyleSheet.create({
   upperbar: {
     marginLeft: 15,
-    marginTop: 60,
+    marginTop: 30,
     marginBottom: 3,
     width: 50,
     height: 5,

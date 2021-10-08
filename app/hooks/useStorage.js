@@ -33,9 +33,6 @@ const useStorage = (name, id, pratice, navigation) => {
 
     //Introdução na BD
     storage.storeData(storageDB);
-
-    //Redirecionamento
-    navigation.navigate("TopicDetails", storageDB[topicIndex()]);
   };
 
   const newEntryEdit = (editRecord, record) => {
@@ -46,7 +43,7 @@ const useStorage = (name, id, pratice, navigation) => {
 
     storage.storeData(storageDB);
 
-    navigation.navigate("TopicDetails", storageDB[topicIndex()]);
+    /*    navigation.navigate("TopicDetails", storageDB[topicIndex()]); */
   };
 
   const deleteEntry = (recordId) => {
@@ -95,7 +92,7 @@ const useStorage = (name, id, pratice, navigation) => {
     const exercisesArray = storageDB.map((topic) => topic.exercises);
     const exercises = [];
     exercisesArray.forEach((exercise) => {
-      exercises.push(exercise[0]);
+      exercise.map((ex) => exercises.push(ex));
     });
     return exercises;
   };
@@ -112,7 +109,8 @@ const useStorage = (name, id, pratice, navigation) => {
     storageDB,
     getFavorites,
     toggleFavorite,
-    getExercises
+    getExercises,
+    topicIndex
   };
 };
 export default useStorage;

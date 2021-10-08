@@ -25,12 +25,15 @@ const TopicDetailsScreen = ({ route, navigation }) => {
             <Container scrollView>
               <Title style={styles.title}>{name}</Title>
               <Quote style={styles.subtitle}>{quote}</Quote>
-              {exercises.map((ex) => (
+              {exercises.map((exercise) => (
                 <Card
-                  img={ex.cardImage}
-                  title={ex.brief.title}
-                  body={ex.brief.body}
-                  time={ex.time}
+                  key={exercise.id}
+                  img={exercise.uri}
+                  topicName={exercise.brief.title}
+                  exercise={exercise}
+                  onPress={() =>
+                    navigation.navigate("ExerciseDetails", { exercise, name })
+                  }
                 />
               ))}
             </Container>
@@ -90,12 +93,13 @@ const styles = StyleSheet.create({
   imageContainer: {
     position: "relative",
     width: "100%",
-    height: 140,
+    height: 80,
     overflow: "hidden",
     justifyContent: "center",
     alignItems: "center"
   },
   image: {
-    resizeMode: "cover"
+    resizeMode: "contain",
+    width: 75
   }
 });

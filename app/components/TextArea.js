@@ -1,11 +1,12 @@
 import React from "react";
-import { TextInput, StyleSheet } from "react-native";
+import { TextInput, StyleSheet, Keyboard } from "react-native";
 import defaultStyles from "../config/styles";
 
 function AppTextArea({ ...otherProps }) {
   return (
     <TextInput
       placeholderTextColor={defaultStyles.colors.medium}
+      onSubmitEditing={Keyboard.dismiss}
       style={styles.input}
       {...otherProps}
     />

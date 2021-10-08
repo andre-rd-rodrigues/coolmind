@@ -1,11 +1,12 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const Container = ({ children, scrollView = false, ...otherProps }) => {
   const ContainerScroll = () => (
-    <ScrollView {...otherProps}>
-      <View style={styles.container}>{children}</View>
-    </ScrollView>
+    <KeyboardAwareScrollView style={styles.container}>
+      {children}
+    </KeyboardAwareScrollView>
   );
   return scrollView ? (
     <ContainerScroll />

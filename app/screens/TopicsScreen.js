@@ -1,55 +1,54 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import StorageContext from "../storage/context";
-import ImageBackgroundScreen from "../components/ImageBackgroundScreen";
 import Title from "../components/Title";
 import Text from "../components/Text";
 import Topic from "../components/TopicCard";
+import Container from "../components/Container";
+import colors from "../config/colors";
 
 const TopicsScreen = ({ navigation }) => {
   const { storageDB } = useContext(StorageContext);
 
   return (
-    <ImageBackgroundScreen
-      uri={require("../assets/section_bg.png")}
-      style={styles.container}
-    >
+    <View style={styles.container}>
       <Title style={styles.title}>Topics</Title>
       <Text style={styles.subtitle}>
         Choose a topic to explore the exercises
       </Text>
       <ScrollView>
-        <View style={styles.row}>
+        <Container>
           {storageDB &&
             storageDB.map((topic, index) => (
               <Topic
+                title={topic.name}
                 key={index}
-                bg={topic.topicImage}
+                img={topic.topicImage}
+                textColor={topic.topicTitleColor}
+                bgColor={topic.topicBgColor}
                 onPress={() => navigation.navigate("TopicDetails", topic)}
               />
             ))}
-        </View>
+        </Container>
       </ScrollView>
-    </ImageBackgroundScreen>
+    </View>
   );
 };
 
 export default TopicsScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.beige
+  },
   title: {
-    marginTop: 40,
+    marginTop: 50,
     marginBottom: 10
   },
   subtitle: {
     textAlign: "center",
-    marginBottom: 10
-  },
-  row: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-evenly"
+    marginBottom: 20
   }
 });

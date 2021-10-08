@@ -77,10 +77,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 300,
     height: 200,
-    marginBottom: 20
+    marginBottom: 20,
+    resizeMode: "contain"
   },
   text: {
-    marginBottom: 15
+    marginBottom: 15,
+    lineHeight: 30
   },
   recordSection: {
     marginTop: 20,

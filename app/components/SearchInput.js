@@ -17,13 +17,10 @@ const SearchInput = ({
 
   const findExercise = () => {
     if (search.length > 0) {
+      console.log(getExercises());
       const exercises = getExercises().filter((exercise) => {
         const name = exercise.brief.title.toLowerCase();
-        const brief = exercise.brief.body.toLowerCase();
-        return (
-          name.includes(search.toLowerCase()) ||
-          brief.includes(search.toLowerCase())
-        );
+        return name.includes(search.toLowerCase());
       });
       return searchResults(exercises);
     } else {
