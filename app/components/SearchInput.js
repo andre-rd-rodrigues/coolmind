@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useStorage from "../hooks/useStorage";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { Platform } from "react-native";
 import defStyles from "../config/styles";
@@ -17,7 +17,6 @@ const SearchInput = ({
 
   const findExercise = () => {
     if (search.length > 0) {
-      console.log(getExercises());
       const exercises = getExercises().filter((exercise) => {
         const name = exercise.brief.title.toLowerCase();
         return name.includes(search.toLowerCase());
@@ -53,7 +52,7 @@ export default SearchInput;
 
 const styles = StyleSheet.create({
   inputcontainer: {
-    margin: -10,
+    margin: 0,
     backgroundColor: "white"
   },
   container: {

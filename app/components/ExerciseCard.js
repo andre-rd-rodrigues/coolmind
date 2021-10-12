@@ -8,27 +8,25 @@ import Text from "./Text";
 
 const ExerciseCard = ({ onPress, removeLike, exercise, topicName }) => {
   const { title, body } = exercise.brief;
-  const { id, time, pratice, favorite, uri } = exercise;
+  const { id, time, pratice, favorite } = exercise;
 
   const { toggleFavorite } = useStorage(topicName, id, pratice);
 
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
-        <View>
-          <View style={styles.timeRow}>
-            <Time time={time} />
-            <LikeButton
-              onPress={() => {
-                toggleFavorite();
-                removeLike && removeLike(id);
-              }}
-              value={favorite ? 1 : 0}
-            />
-          </View>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.body}>{body}</Text>
+        <View style={styles.timeRow}>
+          <Time time={time} />
+          <LikeButton
+            onPress={() => {
+              toggleFavorite();
+              removeLike && removeLike(id);
+            }}
+            value={favorite ? 1 : 0}
+          />
         </View>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.body}>{body}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -39,8 +37,6 @@ export default ExerciseCard;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    alignSelf: "center",
-    alignItems: "center",
     marginVertical: 10,
     backgroundColor: "white",
     padding: 25,

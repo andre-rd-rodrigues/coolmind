@@ -4,34 +4,40 @@ import TopicsScreen from "../screens/TopicsScreen";
 import TopicDetailsScreen from "../screens/TopicDetailsScreen";
 import ExerciseDetailsScreen from "../screens/ExerciseDetailsScreen";
 import ExercisePraticeScreen from "../screens/ExercisePraticeScreen";
+import colors from "../config/colors";
 
 const TopicsNavigator = () => {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator
       screenOptions={{
-        presentation: "card"
+        presentation: "card",
+        headerStyle: {
+          backgroundColor: colors.beige,
+          shadowColor: "transparent",
+          elevation: 0
+        }
       }}
     >
       <Stack.Screen
-        name="Feed"
+        name="Topics"
         component={TopicsScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="TopicDetails"
         component={TopicDetailsScreen}
-        options={{ headerShown: false }}
+        options={{ title: "" }}
       />
       <Stack.Screen
         name="ExerciseDetails"
         component={ExerciseDetailsScreen}
-        options={{ headerShown: false }}
+        options={{ title: "" }}
       />
       <Stack.Screen
         name="ExercisePratice"
         component={ExercisePraticeScreen}
-        options={{ headerShown: false }}
+        options={{ title: "" }}
       />
     </Stack.Navigator>
   );

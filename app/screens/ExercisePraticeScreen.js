@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useStorage from "../hooks/useStorage";
-import { Alert, StyleSheet } from "react-native";
+import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import dayjs from "dayjs";
 import { v4 as uuidv4 } from "uuid";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -10,6 +10,7 @@ import Screen from "../components/Screen";
 import Button from "../components/Button";
 import Area from "../components/TextArea";
 import UploadScreen from "../components/UploadScreen";
+import colors from "../config/colors";
 
 const ExercisePraticeScreen = ({ route, navigation }) => {
   const [record, setRecord] = useState("");
@@ -48,7 +49,7 @@ const ExercisePraticeScreen = ({ route, navigation }) => {
   }, [editRecord]);
 
   return (
-    <Screen>
+    <View style={styles.background}>
       <UploadScreen
         onDone={() => {
           setUploadVisible(false);
@@ -56,7 +57,7 @@ const ExercisePraticeScreen = ({ route, navigation }) => {
         }}
         visible={uploadVisible}
       />
-      <KeyboardAwareScrollView style={styles.container}>
+      <ScrollView style={styles.container}>
         <Title style={styles.title}>{title}</Title>
         <Text style={styles.text}>{description}</Text>
         <Area
@@ -67,17 +68,20 @@ const ExercisePraticeScreen = ({ route, navigation }) => {
           defaultValue={record}
         />
         <Button title="Submit" color="blue" onPress={handleSubmit} />
-      </KeyboardAwareScrollView>
-    </Screen>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    backgroundColor: colors.beige
+  },
   container: {
     paddingHorizontal: 20
   },
   title: {
-    marginTop: 40,
     fontSize: 25
   },
   image: {
@@ -88,7 +92,8 @@ const styles = StyleSheet.create({
   },
   text: {
     marginBottom: 30,
-    lineHeight: 30
+    lineHeight: 30,
+    textAlign: "justify"
   }
 });
 export default ExercisePraticeScreen;

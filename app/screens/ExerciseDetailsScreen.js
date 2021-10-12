@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, View, Alert } from "react-native";
+import { StyleSheet, Image, View, Alert, Platform } from "react-native";
+import { WebView } from "react-native-webview";
 import Title from "../components/Title";
 import Text from "../components/Text";
 import Screen from "../components/Screen";
@@ -7,6 +8,7 @@ import Button from "../components/Button";
 import Container from "../components/Container";
 import Record from "../components/Record";
 import useStorage from "../hooks/useStorage";
+import colors from "../config/colors";
 
 const ExerciseDetailsScreen = ({ navigation, route }) => {
   const [key, setKey] = useState(0);
@@ -19,10 +21,11 @@ const ExerciseDetailsScreen = ({ navigation, route }) => {
 
   const { deleteEntry, editEntry } = useStorage(name, id, pratice, navigation);
 
+  //Actions
   const alertDelete = (id) => {
     Alert.alert(
       "Delete",
-      "This operation will permentaly delete this entry. Are you sure?",
+      "This operation will permanently delete this entry. Are you sure?",
       [
         {
           text: "Cancel",
@@ -45,7 +48,7 @@ const ExerciseDetailsScreen = ({ navigation, route }) => {
   };
 
   return (
-    <Screen>
+    <View style={styles.container}>
       <Container scrollView>
         <Image source={details.detailsImage} style={styles.image} />
         <Title>{details.title}</Title>
@@ -68,11 +71,15 @@ const ExerciseDetailsScreen = ({ navigation, route }) => {
           ))}
         </View>
       </Container>
-    </Screen>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.beige
+  },
   image: {
     alignSelf: "center",
     width: 300,
@@ -82,7 +89,8 @@ const styles = StyleSheet.create({
   },
   text: {
     marginBottom: 15,
-    lineHeight: 30
+    lineHeight: 30,
+    textAlign: "justify"
   },
   recordSection: {
     marginTop: 20,

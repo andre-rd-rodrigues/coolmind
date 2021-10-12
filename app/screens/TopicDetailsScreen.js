@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View, ScrollView } from "react-native";
 import Title from "../components/Title";
 import Quote from "../components/Text";
 import Screen from "../components/Screen";
 import Container from "../components/Container";
 import Card from "../components/ExerciseCard";
+import colors from "../config/colors";
 
 const TopicDetailsScreen = ({ route, navigation }) => {
   const [key, setKey] = useState(0);
@@ -18,18 +19,17 @@ const TopicDetailsScreen = ({ route, navigation }) => {
     switch (name) {
       case "Relax":
         return (
-          <>
+          <ScrollView style={styles.container}>
             <View style={styles.imageRelaxContainer}>
               <Image source={topicDetailsImage} style={styles.imageRelax} />
             </View>
-            <Container scrollView>
+            <Container>
               <Title style={styles.title}>{name}</Title>
               <Quote style={styles.subtitle}>{quote}</Quote>
               {exercises.map((exercise) => (
                 <Card
                   key={exercise.id}
-                  img={exercise.uri}
-                  topicName={exercise.brief.title}
+                  topicName={name}
                   exercise={exercise}
                   onPress={() =>
                     navigation.navigate("ExerciseDetails", { exercise, name })
@@ -37,12 +37,12 @@ const TopicDetailsScreen = ({ route, navigation }) => {
                 />
               ))}
             </Container>
-          </>
+          </ScrollView>
         );
 
       default:
         return (
-          <>
+          <View style={styles.container}>
             <Container scrollView>
               <View style={styles.imageContainer}>
                 <Image source={topicDetailsImage} style={styles.image} />
@@ -60,20 +60,19 @@ const TopicDetailsScreen = ({ route, navigation }) => {
                 />
               ))}
             </Container>
-          </>
+          </View>
         );
     }
   };
-  return (
-    <Screen>
-      <Topic />
-    </Screen>
-  );
+  return <Topic />;
 };
 
 export default TopicDetailsScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.beige
+  },
   title: {
     marginTop: 0
   },

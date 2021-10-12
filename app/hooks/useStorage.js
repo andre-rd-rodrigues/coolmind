@@ -63,12 +63,7 @@ const useStorage = (name, id, pratice, navigation) => {
 
   //Favorites Actions
   const getFavorites = () => {
-    const checkFavorites = storageDB.map((store) =>
-      store.exercises.filter((exArray) => exArray.favorite)
-    );
-    const favoritesResult = checkFavorites.filter((ex) => ex.length !== 0);
-    if (favoritesResult.length !== 0) return favoritesResult[0];
-    return null;
+    return getExercises().filter((exercise) => exercise.favorite);
   };
 
   const toggleFavorite = () => {

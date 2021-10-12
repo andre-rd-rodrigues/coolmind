@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import Title from "../components/Title";
 import Screen from "../components/Screen";
 import Container from "../components/Container";
@@ -72,18 +72,23 @@ const FavoritesScreen = () => {
 
   return (
     <Screen>
-      <Image source={require("../assets/favorites.png")} style={styles.image} />
-      <Title style={styles.title}>Favorites</Title>
-      <View style={styles.searchContainer}>
-        <SearchInput
-          placeholder="Search your favorite exercise..."
-          searchInput={(search) => setSearched(search)}
-          favorites
+      <ScrollView>
+        <Image
+          source={require("../assets/favorites.png")}
+          style={styles.image}
         />
-      </View>
-      <Container scrollView>
-        <Favorites />
-      </Container>
+        <Title style={styles.title}>Favorites</Title>
+        <View style={styles.searchContainer}>
+          <SearchInput
+            placeholder="Search your favorite exercise..."
+            searchInput={(search) => setSearched(search)}
+            favorites
+          />
+        </View>
+        <Container>
+          <Favorites />
+        </Container>
+      </ScrollView>
     </Screen>
   );
 };

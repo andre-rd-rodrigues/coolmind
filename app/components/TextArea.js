@@ -8,6 +8,7 @@ function AppTextArea({ ...otherProps }) {
       placeholderTextColor={defaultStyles.colors.medium}
       onSubmitEditing={Keyboard.dismiss}
       style={styles.input}
+      textAlignVertical="top"
       {...otherProps}
     />
   );

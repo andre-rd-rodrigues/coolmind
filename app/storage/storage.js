@@ -3,10 +3,10 @@ import Constants from "expo-constants";
 
 const storageName = "storageDB";
 
-const storeData = async (value) => {
+const storeData = async (value, key = storageName) => {
   try {
     const jsonValue = JSON.stringify(value);
-    await AsyncStorage.setItem(storageName, jsonValue);
+    await AsyncStorage.setItem(key, jsonValue);
   } catch (error) {
     console.log("Error in storing data", error);
   }
@@ -20,9 +20,9 @@ const storeVersion = async () => {
   }
 };
 
-const getData = async () => {
+const getData = async (key = storageName) => {
   try {
-    const jsonValue = await AsyncStorage.getItem(storageName);
+    const jsonValue = await AsyncStorage.getItem(key);
     return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (e) {
     console.log("Error in getting data", error);

@@ -5,7 +5,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import TopicsNavigator from "./TopicsNavigator";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import SearchScreen from "../screens/SearchScreen";
-import colors from "../config/colors";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,24 +12,23 @@ const AppNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: colors.primary,
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: "#6D9ED6",
         tabBarInactiveColor: "#eee",
         tabBarStyle: {
-          marginBottom: 20
-        },
-        headerShown: false
+          height: 50,
+          paddingBottom: 10,
+          paddingTop: 10
+        }
       }}
     >
       <Tab.Screen
-        name="Topics"
+        name="Home"
         component={TopicsNavigator}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <MaterialCommunityIcons
-              name="book-open-variant"
-              size={size}
-              color={color}
-            />
+            <Feather name="home" size={size} color={color} />
           )
         }}
       />
